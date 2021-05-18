@@ -34,6 +34,6 @@ class Coinlist:
         url = self._expandPathToUrl(path, params)
         res = requests.get(url)
 
-        return TxbitResponse(res.ok and res.json()['success'],
+        """return TxbitResponse(res.ok and res.json()['success'],
                              res.json()['message'],
-                             res.json()['result'])
+                             res.json()['result'])"""
