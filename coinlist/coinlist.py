@@ -42,7 +42,6 @@ class Coinlist:
     def _publicRequest(self, path, params={}):
         """public call for Public Methods"""
         url = self._expandPathToUrl(path, params)
-        print(url)
         res = requests.get(url)
 
         return CoinlistResponse(res.status_code == 200,
@@ -52,9 +51,3 @@ class Coinlist:
     def getSymbols(self, symbol):
         url = '/symbols/' + symbol
         return self._publicRequest(url)
-
-coin = Coinlist();
-
-ret = coin.getSymbols('BTC-USD')
-
-print(ret)
