@@ -51,3 +51,19 @@ class Coinlist:
     def getSymbols(self, symbol):
         url = '/symbols/' + symbol
         return self._publicRequest(url)
+
+    def getSymbolSummary(self):
+        url = '/symbols/summary'
+        return self._publicRequest(url)
+
+    def getAllSymbols(self):
+        url = '/symbols/'
+        return self._publicRequest(url)
+
+    def getMarketSummary(self, symbol):
+        url = '/symbols/' + symbol + '/summary'
+        return self._publicRequest(url)
+
+    def getSystemTime(self):
+        url = '/time'
+        return self._publicRequest(url)
