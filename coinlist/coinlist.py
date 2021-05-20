@@ -44,26 +44,50 @@ class Coinlist:
         url = self._expandPathToUrl(path, params)
         res = requests.get(url)
 
-        return CoinlistResponse(res.status_code == 200,
+        return CoinlistResponse(res.status_code == 200 and res.ok,
                              res.reason,
                              res.json())
 
-    def getSymbols(self, symbol):
+    def getSymbol(self, symbol):
         url = '/symbols/' + symbol
         return self._publicRequest(url)
 
-    def getSymbolSummary(self):
-        url = '/symbols/summary'
+    def getSymbolCandles(self, symbol):
+        url = '/symbols/' + symbol + '/candles'
+        return self._publicRequest(url)
+
+    def getSymbolAuctions(self, symbol):
+        url = '/symbols/' + symbol + '/auctions'
+        return self._publicRequest(url)
+
+    def getSymbolOrders(self, symbol):
+        url = '/symbols/' + symbol + '/book'
+        return self._publicRequest(url)
+
+    def getSymbolQuote(self, symbol):
+        url = '/symbols/' + symbol + '/quote'
+        return self._publicRequest(url)
+
+    def getSymbolMarketSummary(self, symbol):
+        url = '/symbols/' + symbol + '/summary'
         return self._publicRequest(url)
 
     def getAllSymbols(self):
         url = '/symbols/'
         return self._publicRequest(url)
 
-    def getMarketSummary(self, symbol):
-        url = '/symbols/' + symbol + '/summary'
+    def getAllSymbolSummaries(self):
+        url = '/symbols/summary'
         return self._publicRequest(url)
 
     def getSystemTime(self):
         url = '/time'
+        return self._publicRequest(url)
+
+    def getSupportedAssets(self):
+        url = '/assets'
+        return self._publicRequest(url)
+
+    def getAuctionResult(self, symbol, auctionID):
+        url = '/symbols/' + symbol + '/auctions/' + auctionID
         return self._publicRequest(url)
